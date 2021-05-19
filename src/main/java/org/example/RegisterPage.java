@@ -6,37 +6,44 @@ import org.openqa.selenium.By;
 import java.sql.Timestamp;
 
 public class RegisterPage extends Utils {
-
-
-
-
-    public void enterRegistrationDetails()
+   private By _gender = By.xpath("//input[@id='gender-male']");
+    private By _firstName = By.id("FirstName");
+    private By _lastName = By.id("LastName");
+    private By _dateOfBirth =By.name("DateOfBirthDay");
+    private By _monthOfBirth = By.name("DateOfBirthMonth");
+    private By _yearOfBirth = By.name("DateOfBirthYear");
+    private By _email = By.id("Email");
+    private By _companyName = By.name("Company");
+    private By _password = By.name("Password");
+    private By _confirmPassword = By.name("ConfirmPassword");
+    private By _registerButton = By.name("register-button");
+LoadProperty loadProperty = new LoadProperty();
+public void enterRegistrationDetails ()
     {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+       Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         sleep(5000);
         //click on Male or Female button
-        clickOnElements(By.xpath("//input[@id='gender-male']"));
+        clickOnElements(_gender);
         // Type First Name
-        enterText(By.id("FirstName"),"vipul");
+        enterText(_firstName,loadProperty.getProperty("firstName"));
         // Type Last Name
-        enterText(By.id("LastName"),"patel");
+        enterText(_lastName,loadProperty.getProperty("LastName"));
         // Select Date
-        selectFromDropdownByVisibleText(By.name("DateOfBirthDay"),"30");
+        selectFromDropdownByVisibleText(_dateOfBirth,loadProperty.getProperty("DateOfBirthDay"));
         // Select Month
-        selectFromDropdownByIndex(By.name("DateOfBirthMonth"),3);
+        selectFromDropdownByIndex(_monthOfBirth,loadProperty.getProperty("DateOfBirthMonth"));
         // Select Year
-        selectFromDropdownByValue(By.name("DateOfBirthYear"),"2021");
+        selectFromDropdownByValue(_yearOfBirth,loadProperty.getProperty("DateOfBirthYear"));
         // type email address
-
-        enterText(By.id("Email"),"vipul"+timestamp.getTime()+"@gmail.com");
+        enterText(_email,loadProperty.getProperty("Email"));
         //type company name
-        enterText(By.name("Company"),"hello");
+        enterText(_companyName,loadProperty.getProperty("Company"));
         //type password
-        enterText(By.name("Password"), "123456");
+        enterText(_password,loadProperty.getProperty("Password"));
         //confirm password
-        enterText(By.name("ConfirmPassword"),"123456");
+        enterText(_confirmPassword,loadProperty.getProperty("ConfirmPassword"));
         //click on Register
-        clickOnElements(By.id("register-button"));
+        clickOnElements(_registerButton);
        waitForClickable(By.id("newsletter-subscribe-button"),5000);
 
 

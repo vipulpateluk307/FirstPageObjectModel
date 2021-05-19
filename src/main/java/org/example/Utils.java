@@ -30,9 +30,9 @@ public class Utils extends BasePage {
         select.selectByVisibleText(text);
     }
     // method for select from dropdown by index
-    public static void selectFromDropdownByIndex(By by, int index) {
+    public static void selectFromDropdownByIndex(By by, String index) {
         Select select = new Select(driver.findElement(by));
-        select.selectByIndex(index);
+        select.selectByIndex(Integer.parseInt(index));
     }
     // method for select from dropdown by value
     public static void selectFromDropdownByValue(By by, String text) {
