@@ -23,7 +23,7 @@ public void enterRegistrationDetails ()
        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         sleep(5000);
         //click on Male or Female button
-        clickOnElements(_gender);
+        clickOnElement(_gender);
         // Type First Name
         enterText(_firstName,loadProperty.getProperty("firstName"));
         // Type Last Name
@@ -31,11 +31,11 @@ public void enterRegistrationDetails ()
         // Select Date
         selectFromDropdownByVisibleText(_dateOfBirth,loadProperty.getProperty("DateOfBirthDay"));
         // Select Month
-        selectFromDropdownByIndex(_monthOfBirth,loadProperty.getProperty("DateOfBirthMonth"));
+        selectFromDropdownByVisibleText(_monthOfBirth,loadProperty.getProperty("DateOfBirthMonth"));
         // Select Year
         selectFromDropdownByValue(_yearOfBirth,loadProperty.getProperty("DateOfBirthYear"));
         // type email address
-        enterText(_email,loadProperty.getProperty("Email"));
+        enterText(_email,loadProperty.getProperty("Email")+timestamp.getTime()+"@test.com");
         //type company name
         enterText(_companyName,loadProperty.getProperty("Company"));
         //type password
@@ -43,10 +43,7 @@ public void enterRegistrationDetails ()
         //confirm password
         enterText(_confirmPassword,loadProperty.getProperty("ConfirmPassword"));
         //click on Register
-        clickOnElements(_registerButton);
-       waitForClickable(By.id("newsletter-subscribe-button"),5000);
-
-
+        clickOnElement(_registerButton);
 
     }
 

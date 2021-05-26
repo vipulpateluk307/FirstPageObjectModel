@@ -1,27 +1,33 @@
 package org.example;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest extends Utils {
+    BrowserSelector browserSelector = new BrowserSelector();
     @BeforeMethod
     public void openBrowser() {
+    //Open the browser
+        browserSelector.openBrowser();
 
-       System.setProperty("webdriver.chrome.driver", "src\\test\\Resources\\Browser\\chromedriver.exe");
-       driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
+        //open url
         driver.get("https://demo.nopcommerce.com/");
     }
 
     @AfterMethod
-    public void closeBrowser(){
-        driver.quit();
+    public void closeBrowser(ITestResult result){
 
+        if (!result.isSuccess()){
+            captureScreenShot(result.getName());
+        }
+        // close the browser
+        driver.quit();
     }
+
 
 
 
